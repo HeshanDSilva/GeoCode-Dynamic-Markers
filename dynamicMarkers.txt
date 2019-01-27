@@ -1,0 +1,18 @@
+Route::get('/map', function(){
+    $device = Device::all();
+    $lat = '6.9271';
+    $long = '79.9612';
+    $config = array();
+    $config['center'] = '6.9271, 79.8612';
+    $donfig['geocodeCaching'] = true;
+    GMaps::initialize($config);
+    foreach($device as $devices){
+      $marker['position']=$devices->lattitude.','.$devices->longtitude;
+      $marker['icon']='/Google Maps Markers/blue_MarkerA.png';
+      GMaps::add_marker($marker);
+    }
+    $map = GMaps::create_map();
+    echo $map['js'];
+    echo $map['html'];
+
+});
